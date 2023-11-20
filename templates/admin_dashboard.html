@@ -1,0 +1,106 @@
+{% extends "base1.html" %}
+
+{% block head %}
+<style>
+    body{
+        background-color:cornsilk;
+        
+
+    }
+    .card{
+        box-shadow: 1px 2px 12px black;
+        border-radius: 20px;
+        height: fit-content;
+    }
+
+    .card:hover{
+        box-shadow: 5px 6px 90px green;
+        
+    }
+    .img-fluid{
+        height: 200px;
+    }
+
+
+
+
+    .zoom {
+        
+        transition: transform .2s; /* Animation */
+        margin: 0 auto;
+      }
+      
+      .zoom:hover {
+        transform: scale(1.1); 
+      }
+    
+</style>
+{% endblock %}
+
+{% block content %}
+
+<h1 class="display-4" align="Center">Venue Details</h1>
+<br>
+
+{% for v in range(0,venue|length) %}
+
+    <div class="container">
+    <div class="row gy-lg-5">
+
+    {% if v%3==0 %} <!--condition for first card rest follows automatically-->
+        <div class="col-md">
+        <div class="card zoom" style="width: 20rem;">
+        <img src="{{venue[v].vimg}}" class="card-img-top img-fluid rounded" alt="{{venue[v].name}}">
+        <div class="card-body">
+        <h5 class="card-title">{{venue[v].name}}</h5>
+        <p class="card-text">Location: {{venue[v].location}}</p>
+        <p class="card-text">Capacity: {{venue[v].capacity}}</p>
+        <a href="{{url_for("views.shows",venue_id=venue[v].id)}}" class="btn btn-primary">Shows <i class="fa-solid fa-film"></i></a>
+        <a href="/delete_venue/{{venue[v].id}}" class="btn btn-outline-danger">Delete<i class="fa-solid fa-trash"></i></a>
+        <a href="/{{venue[v].id}}/edit_venue" class="btn btn-warning">Edit <i class="fa-solid fa-pen-to-square"></i></a>
+        </div>
+        </div>
+        </div>
+
+
+
+    <!-- {% elif v%3==1 %} -->
+        <div class="col-md">
+        <div class="card zoom" style="width: 20rem;">
+        <img src="{{venue[v].vimg}}" class="card-img-top img-fluid rounded" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">{{venue[v].name}}</h5>
+        <p class="card-text">Location: {{venue[v].location}}</p>
+        <p class="card-text">Capacity: {{venue[v].capacity}}</p>
+        <a href="{{url_for("views.shows",venue_id=venue[v].id)}}" class="btn btn-primary">Shows <i class="fa-solid fa-film"></i></a>
+        <a href="/delete_venue/{{venue[v].id}}" class="btn btn-outline-danger">Delete<i class="fa-solid fa-trash"></i></a>
+        <a href="/{{venue[v].id}}/edit_venue" class="btn btn-warning">Edit <i class="fa-solid fa-pen-to-square"></i></a>
+        </div>
+        </div>
+        </div>
+
+
+    <!-- {% elif v%3==2 %} -->
+        <div class="col-md">
+        <div class="card zoom" style="width: 20rem;">
+        <img src="{{venue[v].vimg}}" class="card-img-top img-fluid rounded" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">{{venue[v].name}}</h5>
+        <p class="card-text">Location: {{venue[v].location}}</p>
+        <p class="card-text">Capacity: {{venue[v].capacity}}</p>
+        
+        <a href="{{url_for("views.shows",venue_id=venue[v].id)}}" class="btn btn-primary">Shows <i class="fa-solid fa-film"></i></a>
+        <a href="{{url_for("views.delete_venue",venue_id=venue[v].id)}}" class="btn btn-outline-danger">Delete<i class="fa-solid fa-trash"></i></a>
+        <a href="/{{venue[v].id}}/edit_venue" class="btn btn-warning">Edit <i class="fa-solid fa-pen-to-square"></i></a>
+        </div>
+        </div>
+        </div>
+
+    {% endif %}
+    </div>
+    </div>
+</br></br>
+  {% endfor %}
+  
+
+{% endblock %}

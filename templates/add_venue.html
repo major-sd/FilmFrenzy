@@ -1,0 +1,55 @@
+{% extends "base1.html" %}
+
+
+{% block content %}
+
+<h1>Add Venue</h1>
+<br>
+<br>
+<form method="POST">
+    <div class="form-group">
+      <label for="name">Venue Name <span style="color:red; font-size:20px;">*</span></label><br>
+      <input type="text" class="form-control"  required name=name id="name" placeholder="Venue Name">
+    </div>
+
+    <br>
+    <br>
+
+
+    <div class="form-group">
+        <label for="location"></label>Venue Location<span style="color:red; font-size:20px;">*</span></label>
+        <input type="text" class="form-control" required name=location id="location" placeholder="Venue Location">
+      </div>
+
+      <br>
+      <br>
+
+
+
+      <div class="form-group">
+        <label for="capacity">Venue Capacity <span style="color:red; font-size:20px;">*</span></label><br>
+        <input type="number" min=0 class="form-control"  name=capacity id="capacity" required placeholder="Venue Capacity">
+      </div>
+
+      <br>
+      <br>
+
+
+      <div class="form-group">
+        <label for="image">Venue Image </label><br>
+        <input type="text" class="form-control"  name=image id="image" placeholder="Paste image URL here">
+      </div>
+
+      <br>
+      <div align="center">
+        <button class="btn btn-primary" type="submit">Submit</button>
+          
+      </div>
+
+
+
+
+    
+  </form>
+
+{% endblock %}

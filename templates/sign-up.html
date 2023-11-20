@@ -1,0 +1,55 @@
+{% extends "base1.html" %} {% block title %}Sign Up User{% endblock %} {% block content
+  %}
+  <form method="POST">
+    <div class="container">
+    <h3 align="center">Sign Up</h3>
+    <div class="form-group">  
+      <label for="name">Name<span style="color:red; font-size: 20px;">*</span></label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        class="form-control"
+        placeholder="Enter your Name"
+        required
+      />
+
+      <label for="username">Username (Min length: 4)<span style="color:red; font-size: 20px;">*</span></label>
+      <input
+        type="text"
+        id="new_username"
+        name="new_username"
+        class="form-control"
+        placeholder="Set Username"
+        required
+      />
+
+      <label for="password">Password (Min length: 5)<span style="color:red; font-size: 20px;">*</span></label>
+      <input
+        type="password"
+        id="new_password"
+        name="new_password"
+        class="form-control"
+        placeholder="Enter Password"
+        required
+      />
+
+      <label for="confirm_password">Confirm Password (Must be same as above password)<span style="color:red; font-size: 20px;">*</span></label>
+      <input
+        type="password"
+        id="confirm_password"
+        name="confirm_password"
+        class="form-control"
+        placeholder="Confirm Password"
+        required
+      />
+      <br />
+      <div align="center">
+        <button class="btn btn-primary" type="submit">Sign Up</button>
+        <div align="center"><p><h5> Already Have an account???? <a href="{{ url_for("auth.user_login") }}">Log in</a><h5></p></div>
+          
+      </div>
+    </div>
+  </div>
+  </form>
+  {% endblock %}

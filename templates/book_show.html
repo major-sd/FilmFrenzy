@@ -1,0 +1,68 @@
+{% extends "base1.html" %}
+{% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap" rel="stylesheet">
+<style>
+    .btn{
+        
+        box-shadow: 2px 4px 2px 4px rgba(81, 73, 73, 0.244);
+        text-align: center;
+        
+        
+
+    }
+    
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="container fluid">
+    <div class="row">
+      <div class="col"><p align="left"><b>Booking- {{show_name}}|{{venue_name}}|{{venue_location}}</b></p></div>
+      <div class="col"><p align="right"><b>Show timings- {{show_timing}}</b></p></div>
+      </div>
+  </div>
+
+  <p align="center"><span style="font-family: 'Kanit', sans-serif; font-size:50px; text-align:center; text-shadow: 2px 2px 5px rgb(178, 215, 30)">Book your Show...</span></p>
+      
+</br>
+<br>
+<form method="POST">
+    <div class="form-group">
+      <label for="seats">No. of Seats: </label>
+      <input type="number" class="form-control" name="seats" id="seats" placeholder="Enter no. of seats">
+    </div>
+    </br>
+
+
+
+    <div class="mb-3 row">
+        <label for="staticLocation" class="col-sm-2 col-form-label">Show Price: </label>
+        <div class="col-sm-10">
+          <input type="text" readonly class="form-control-plaintext" id="staticLocation" value="₹{{show_price}}/-">
+        </div>
+      </div>
+
+
+      <div class="mb-3 row">
+        <label for="staticLocation" class="col-sm-2 col-form-label">Available Seats: </label>
+        <div class="col-sm-10">
+          <input type="text" readonly class="form-control-plaintext" id="staticLocation" value="{{available_s}}">
+        </div>
+      </div>
+
+
+      <div align="center" class="btn">
+        <button class="btn btn-primary" type="submit">Confirm Booking</button>
+          
+      </div>
+    
+
+
+  </form>
+
+
+
+{% endblock %}  

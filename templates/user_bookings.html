@@ -1,0 +1,72 @@
+{% extends "base1.html" %}
+
+{% block head %}
+<style>
+    body{
+        background-image: url("/static/img14.jpg");
+        background-size: cover;
+    }
+    .card{
+        
+        box-shadow: 10px 10px 12px rgba(193, 41, 206, 0.831);
+        
+    
+    }
+    .card-text{
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    .card-title{
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+    .card-header{
+        background-color: rgb(224, 101, 13);
+    }
+</style>
+
+{% endblock %}
+
+{% block content %}
+</br>
+{% if ub==[] %}
+<h1 class="display-4" style="color:azure">No Bookings yet.....</h1>
+{% else %}
+    {% for b in ub %}
+        <div class="card">
+            <div class="card-header">
+            <strong>Booking ID: #{{b.id}}</strong>
+            </div>
+            <div class="card-body" style="width: auto;">
+            <h5 class="card-title"><b>Show Name: <span style="color:rgb(13, 49, 232)">{{b.show.name}}</span></b></h5>
+            <!-- <img class =card-img-left src="/static/img11.jpg" style="object-fit: cover; width: 100%; height: auto;"> -->
+            <p class="card-text" align="right"><b>Name: <span style="color: tomato;">{{b.user.name}}</span></b></p>
+            <p class="card-text" align="right"><b>Booked Venue: <span style="color: tomato;">{{b.venue.name}}</span></b></p>
+            <p class="card-text" align="right"><b>Booked Venue Location: <span style="color: tomato;">{{b.venue.location}}</span></b></p>
+            <p class="card-text" align="right"><b>Booked Show Timing: <span style="color: tomato;">{{b.show.show_timing}}</span></b></p>
+            <p class="card-text" align="right"><b>Number of seats booked: <span style="color: tomato;">{{b.seats_book}}</span></b></p>
+            <p class="card-text" align="right"><b>Total Price: <span style="color: tomato;">₹{{b.total_price}}</span></b></p>
+            <form method="POST">
+            <label><b>Movie Ratings</b> <i>(Use the slider to rate on scale of 0 to 5)</i> </label>  
+            <input type="range" name="rate" id="rate" min="0" max="5">   
+            <button type="submit" class="btn btn-primary mb-2">Rate</button>
+            <p><label for="show_id"><b>Show ID:</b> </label>
+                <input type="number" id="show_id" name="show_id" value="{{b.show.id}}" readonly></p>
+                <p><label for="venue_id"><b>Venue ID:</b> </label>
+                    <input type="number" id="venue_id" name="venue_id" value="{{b.venue.id}}" readonly></p>
+
+
+                    {% if x.ratings and x.user_id==b.user.id and x.show_id==b.show.id %}
+                        <p><label for="your rating"><b>Your Ratings:</b> </label>
+                        <input type="number" id="user_rating" name="user_rating" value="{{x.ratings}}" readonly></p>
+                    {% endif %}
+                    
+            </form>
+            
+            </div>
+        </div>
+        <br>
+        <br>
+    {% endfor %}
+{% endif %}    
+{% endblock%}

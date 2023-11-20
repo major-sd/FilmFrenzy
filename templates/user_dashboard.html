@@ -1,0 +1,171 @@
+{% extends "base1.html" %}
+
+{% block head %}
+<style>
+
+    body{
+        background:url(https://images.unsplash.com/photo-1485095329183-d0797cdc5676?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)
+        
+    }
+
+    .card{
+        box-shadow: 0px 5px 20px 4px whitesmoke;
+        border-radius: 50px 50px;
+        background-color: rgb(226, 133, 191);
+         
+        
+    }
+
+
+    .card:hover{
+        box-shadow: 12px 12px 90px rgb(225, 228, 2);
+        
+    }
+    .card-title{
+        background-color: rgb(219, 216, 23);
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .display-6{
+        color: azure;
+        text-shadow: 3px 2px 5px rgb(75, 73, 73);
+
+    }
+    .card-text{
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+
+
+   
+
+    
+
+      .zoom {
+        
+        transition: transform .2s; /* Animation */
+        margin: 0 auto;
+      }
+      
+      .zoom:hover {
+        transform: scale(1.1); 
+      }
+    
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<h1 class="display-4" align="Center" style="color: white; text-shadow: 2px 2px 12px white">Shows In the house.......</h1>
+<br>
+{% if shows == [] %}
+<h1 class="display-6">No Show Details exists as of now....</h1>
+{% else %}
+    {% for v in range(0,shows|length) %}
+
+        <div class="container">
+        <div class="row mb-5">
+
+        {% if v%3==0 %} <!--condition for first card rest follows automatically-->
+            <div class="col-md">
+            <div class="card card-custom zoom" style="width: 20rem;">
+            <img src="{{shows[v].simg}}" class="card-img-top img-fluid" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">{{shows[v].name}}</h5>
+            <p class="card-text"><b>Venue Name:</b> {{shows[v].venue.name}}</p>
+            <p class="card-text"><b>Venue Location:</b> {{shows[v].venue.location}}</p>
+            <p class="card-text"><b>Tags:</b> {{shows[v].tags}}</p>
+            <p class="card-text"><b>Price:</b> ₹{{shows[v].price}}/-</p>
+            <p class="card-text"><b>Show Timing:</b> {{shows[v].show_timing}}</p>
+            {% if shows[v].avg_rating != None %}
+                <p class="card-text"><b>Show Rating:</b> {{shows[v].avg_rating}}/5 <i class="fa-solid fa-star fa-bounce" style="color: #ffd505;"></i></p>
+            {% endif %}
+
+            {% if shows[v].show_capacity > 0.15*shows[v].venue.capacity %}
+            <a href="/{{current_user.id}}/{{shows[v].id}}/book_show" class="btn btn-primary"><span>Book Now</span> <i class="fa-solid fa-film"></i></a>
+            {% elif shows[v].show_capacity <= 0.15*shows[v].venue.capacity and shows[v].show_capacity > 0 %}
+            <p class="card-text"><b><center><span style=" border: radius 10px; color: red">Hurry...Show is selling out fast <i class="fa-solid fa-clock fa-beat-fade fa-lg" style="color: #ce1c1c;"></i> </span></center></b></p>
+            <a href="/{{current_user.id}}/{{shows[v].id}}/book_show" class="btn btn-primary"><span>Book Now</span> <i class="fa-solid fa-film"></i></a>
+            {% else %}
+            <p class="card-text"><b><center><span style="background-color: green; border: radius 10px; color: white">!! SHOW HOUSEFULL !! </span></center></b></p>
+            {% endif %}
+            
+            </div>
+            </div>
+            </div>
+        </br>
+
+
+        <!-- {% elif v%3==1 %} -->
+            <div class="col-md">
+            <div class="card card-custom zoom" style="width: 20rem;">
+            <img src="{{shows[v].simg}}" class="card-img-top img-fluid" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">{{shows[v].name}}</h5>
+            <p class="card-text"><b>Venue Name:</b> {{shows[v].venue.name}}</p>
+            <p class="card-text"><b>Venue Location:</b> {{shows[v].venue.location}}</p>
+            <p class="card-text"><b>Tags:</b> {{shows[v].tags}}</p>
+            <p class="card-text"><b>Price:</b> ₹{{shows[v].price}}/-</p>
+            <p class="card-text"><b>Show Timing:</b> {{shows[v].show_timing}}</p>
+            {% if shows[v].avg_rating != None %}
+                <p class="card-text"><b>Show Rating:</b> {{shows[v].avg_rating}}/5 <i class="fa-solid fa-star fa-bounce" style="color: #ffd505;"></i></p>
+            {% endif %}
+            
+            {% if shows[v].show_capacity > 0.15*shows[v].venue.capacity %}
+            <a href="/{{current_user.id}}/{{shows[v].id}}/book_show" class="btn btn-primary">Book Now <i class="fa-solid fa-film"></i></a>
+            {% elif shows[v].show_capacity <= 0.15*shows[v].venue.capacity and shows[v].show_capacity > 0 %}
+            <p class="card-text"><b><center><span style=" border: radius 10px; color: red">Hurry...Show is selling out fast <i class="fa-solid fa-clock fa-beat-fade fa-lg" style="color: #ce1c1c;"></i> </span></center></b></p>
+            <a href="/{{current_user.id}}/{{shows[v].id}}/book_show" class="btn btn-primary"><span>Book Now</span> <i class="fa-solid fa-film"></i></a>
+            {% else %}
+            <p class="card-text"><b><center><span style="background-color: green; border: radius 10px; color: white">!! SHOW HOUSEFULL !!</span></center></b></p>
+            {% endif %}
+
+            </div>
+            </div>
+            </div>
+            <br>
+
+
+        <!-- {% elif v%3==2 %} -->
+            <div class="col-md">
+            <div class="card card-custom zoom" style="width: 20rem;">
+            <img src="{{shows[v].simg}}" class="card-img-top img-fluid" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">{{shows[v].name}}</h5>
+            <p class="card-text"><b>Venue Name:</b> {{shows[v].venue.name}}</p>
+            <p class="card-text"><b>Venue Location:</b> {{shows[v].venue.location}}</p>
+            <p class="card-text"><b>Tags:</b> {{shows[v].tags}}</p>
+            <p class="card-text"><b>Price:</b> ₹{{shows[v].price}}/-</p>
+            <p class="card-text"><b>Show Timing:</b> {{shows[v].show_timing}}</p>
+            {% if shows[v].avg_rating != None %}
+                <p class="card-text"><b>Show Rating:</b> {{shows[v].avg_rating}}/5 <i class="fa-solid fa-star fa-bounce" style="color: #ffd505;"></i></p>
+            {% endif %}
+            
+            {% if shows[v].show_capacity > 0.15*shows[v].venue.capacity %}
+            <a href="/{{current_user.id}}/{{shows[v].id}}/book_show" class="btn btn-primary">Book Now <i class="fa-solid fa-film"></i></a>
+            {% elif (shows[v].show_capacity <= 0.15*shows[v].venue.capacity) and shows[v].show_capacity > 0 %}
+            <p class="card-text"><b><center><span style=" border: radius 10px; color: red">Hurry...Show is selling out fast <i class="fa-solid fa-clock fa-beat-fade fa-lg" style="color: #ce1c1c;"></i></span></center></b></p>
+            <a href="/{{current_user.id}}/{{shows[v].id}}/book_show" class="btn btn-primary"><span>Book Now</span> <i class="fa-solid fa-film"></i></a>
+            {% else %}
+            <p class="card-text"><b><center><span style="background-color: green; border: radius 10px; color: white">!! SHOW HOUSEFULL !!</span></center></b></p>
+            {% endif %}
+            
+            </div>
+            </div>
+            </div>
+            <br>
+
+        {% endif %}
+    </div>
+    </div>
+    </br>
+{% endfor %}
+
+{% endif %}
+    
+
+{% endblock %}

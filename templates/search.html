@@ -1,0 +1,81 @@
+{% extends "base1.html" %}
+
+
+{% block head %}
+<style>
+    .search-bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        
+      }
+      
+      .category-dropdown {
+        margin-right: 1px;
+        border-radius: 10px;
+        width: 150px;
+        margin: 10px;
+        height: 40px;
+        align-items: center;
+        background-color:gold;
+        box-shadow: 2px 2px 12px black;
+        
+      }
+      
+      input[type="text"] {
+        flex: 1;
+        padding: 10px;
+        border: 5px solid greenyellow;
+        border-radius: 50px;
+        background-color: khaki;
+        box-shadow: 2px 2px 12px black;
+      }
+
+      input[type="text"]:hover {
+        
+        background-color: white;
+      }
+      
+      button[type="submit"] {
+        padding: 10px;
+        margin: 20px;
+        border: none;
+        border-radius: 20px;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        box-shadow: 2px 2px 12px black;
+        
+      }
+
+      button:hover{
+        background-color: orange;
+        cursor: pointer;
+      }
+      
+</style>
+{% endblock %}
+
+{% block content %}
+<form action="#" method="POST">
+    <div class="search-bar">
+        <select class="category-dropdown" name="op" id="op">
+            
+          
+          <option value="Available Shows">Available Shows</option>
+          <option value="Shows">Shows</option>
+          <option value="Venues">Venue Name</option>
+          <option value="Location">Venue Location</option>
+          <option value="Tags">Tags</option>
+          <option value="Show-Timing">Show-Timing</option>
+          <option value="Price">Price</option>
+          <option value="Ratings">Ratings</option>
+        </select>
+        <input type="text" placeholder="Search..." name="qry" id="qry">
+        <button type="submit">Search</button>
+      </div>
+</form>
+
+  
+{% endblock %}

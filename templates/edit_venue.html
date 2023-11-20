@@ -1,0 +1,55 @@
+{% extends "base1.html" %}
+
+
+{% block content %}
+
+<h1>Edit Venue</h1>
+<br>
+<br>
+<form method="POST">
+    <div class="form-group">
+      <label for="name">Venue Name</label><br>
+      <input type="text" class="form-control"  name=name id="name" placeholder="Venue Name" value="{{v.name}}">
+    </div>
+
+    <br>
+    <br>
+
+
+    <div class="form-group">
+        <label for="location"></label>Venue Location</label>
+        <input type="text" class="form-control"  name=location id="location" placeholder="Venue Location" value="{{v.location}}">
+      </div>
+
+      <br>
+      <br>
+
+
+
+      <div class="form-group">
+        <label for="capacity">Venue Capacity</label><br>
+        <input type="text" class="form-control"  name=capacity id="capacity" placeholder="Venue Capacity", value="{{v.capacity}}">
+      </div>
+
+      <br>
+      <br>
+
+
+      <div class="form-group">
+        <label for="image">Venue Image </label><br>
+        <input type="text" class="form-control"  name=image id="image" placeholder="Paste image URL here">
+      </div>
+
+      <br>
+      <div align="center">
+        <button class="btn btn-primary" type="submit">Submit</button>
+          
+      </div>
+
+
+
+
+    
+  </form>
+
+{% endblock %}

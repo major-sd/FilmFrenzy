@@ -1,0 +1,81 @@
+{% extends "base1.html" %}
+
+
+{% block content %}
+</br>
+<h1 align="center">Edit Profile Credentials</h1>
+<br>
+<br>
+<br method="POST">
+
+
+    <div class="mb-3 row">
+        <label for="staticName" class="col-sm-2 col-form-label">Current Name: </label>
+        <div class="col-md-10">
+          <input type="text" readonly class="form-control-plaintext" id="staticName" value="{{user.name}}">
+        </div>
+      </div>
+
+
+
+
+    <div class="form-group">
+      <label for="name">Edit Name: </label><br>
+      <input type="text" class="form-control"  name=name id="name" placeholder="Enter New Name:">
+    </div>
+
+    <br>
+
+
+    <div class="mb-3 row">
+        <label for="staticUsername" class="col-sm-2 col-form-label">Current Username: </label>
+        <div class="col-md-10">
+          <input type="text" readonly class="form-control-plaintext" id="staticUsername" value="{{user.username}}">
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label for="name">Edit Username: </label><br>
+        <input type="text" class="form-control"  name=nun id="nun" placeholder="Enter New Username ">
+      </div>
+  
+      <br>
+
+      <div class="form-group">
+        <label for="name">Old Password: </label><br>
+        <input type="password" class="form-control"  name=opass id="opass" placeholder="Enter Old Password">
+      </div>
+  
+      <br>
+
+
+
+      <div class="form-group">
+        <label for="name">New Password: </label><br>
+        <input type="password" class="form-control"  name=npass id="npass" placeholder="Enter New Password">
+      </div>
+  
+      <br>
+
+
+      <div class="form-group">
+        <label for="name">Confirm New Password: </label><br>
+        <input type="password" class="form-control"  name=cnpass id="cnpass" placeholder="Confirm New Password">
+      </div>
+  
+      <br>
+    </br>
+
+      <div align="center">
+        <button class="btn btn-primary" type="submit"> Submit </button>
+          
+      </div>
+
+
+
+
+    
+  </form>
+
+{% endblock %}

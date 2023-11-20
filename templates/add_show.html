@@ -1,0 +1,107 @@
+{% extends "base2show.html" %}
+{% block title %}
+Add Shows
+{% endblock %}
+
+{% block content %}
+</br>
+
+<h1>Add Shows</h1>
+<br>
+<br>
+<form method="POST">
+
+
+    <div class="form-group">
+      <label for="name">Show Name: </label><br>
+      <input type="text" class="form-control"  name=name id="name" placeholder="Show Name">
+    </div>
+
+    <br>
+    <br>
+
+
+
+
+    <div class="form-group">
+      <label for="name">Show Tags: </label><br>
+      <input type="text" class="form-control"  name=tags id="tags" placeholder="Show Tag">
+    </div>
+
+    <br>
+    <br>
+
+
+
+    <div class="form-group">
+
+
+
+      <label for="Show Timing">Choose Show Timing:</label>
+      <select name="show_timing" id="show_timing">
+        <option value="9am-12pm">9am-12pm</option>
+        <option value="12pm-3pm">12pm-3pm</option>
+        <option value="3pm-6pm">3pm-6pm</option>
+        <option value="6pm-9pm">6pm-9pm</option>
+        <option value="9pm-12am">9pm-12am</option>
+
+      </select>
+      <br><br>
+
+
+
+
+      <label for="price">Show per Ticket Price: </label><br>
+      <input type="text" class="form-control"  name=price id="price" placeholder="Enter unit ticket price">
+    </div>
+
+    <br>
+    <br>
+
+
+    <label for="image">Show Image</label><br>
+      <input type="text" class="form-control"  name=image id="image" placeholder="Paste image URL here">
+    </div>
+
+    <br>
+    <br>
+
+
+  
+
+
+      <div class="mb-3 row ">
+        <label for="staticLocation" class="col-sm-2 col-form-label">Show Location: </label>
+        <div class="col-sm-10">
+          <input type="text" readonly class="form-control-plaintext" id="staticLocation" value="{{v.location}}">
+        </div>
+      </div>
+
+
+
+      <div class="mb-3 row">
+        <label for="staticCapacity" class="col-sm-2 col-form-label">Show Capacity: </label>
+        <div class="col-sm-10">
+          <input type="text" readonly class="form-control-plaintext" id="staticLocation" value="{{v.capacity}}">
+        </div>
+      </div>
+      
+
+
+
+      <br />
+      <div align="center">
+        <button class="btn btn-primary" type="submit">Submit</button>
+          
+      </div>
+
+
+     
+
+
+
+
+    
+  </form>
+
+{% endblock %}

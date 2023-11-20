@@ -1,0 +1,31 @@
+{% extends "base1.html" %} {% block title %}Admin Login{% endblock %} {% block content
+  %}
+  <form method="POST">
+    <div class="container">
+    <h3 align="center">Admin Login</h3>
+    <div class="form-group">  
+      <label for="admin_username">Admin Username</label>
+      <input
+        type="text"
+        id="admin_username"
+        name="admin_username"
+        class="form-control"
+        placeholder="Enter Admin Username"
+      />
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="admin_password"
+        name="admin_password"
+        class="form-control"
+        placeholder="Enter Password"
+      />
+      <br />
+      <div align="center">
+        <button class="btn btn-primary" type="submit">Login</button>
+        <div align="center"><p><h5> Are You a User ???? <a href="{{ url_for("auth.user_login") }}">Log in Here</a><h5></p></div>
+      </div>
+    </div>
+  </div>
+  </form>
+  {% endblock %}

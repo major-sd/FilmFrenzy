@@ -533,6 +533,11 @@ def search():
     return render_template("search.html",admin=current_user,user=current_user,id=current_user.id)
 
 
+@views.route("/add_canteen", methods=['GET','POST'])
+@login_required # only admin
+def add_canteen():
+    return render_template("canteen.html",admin=current_user, user=current_user,id=current_user.id)
+    
 
 
 

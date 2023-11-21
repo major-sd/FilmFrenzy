@@ -7,8 +7,7 @@ venv/
 # Environment-related files
 .env
 
-# SQLite database file
-your_database_name.db  # Replace with your actual database file name
+
 
 # Other common files to ignore (optional)
 .DS_Store  # macOS system file

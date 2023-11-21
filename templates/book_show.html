@@ -1,68 +1,163 @@
 {% extends "base1.html" %}
 {% block head %}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap" rel="stylesheet">
-<style>
-    .btn{
-        
-        box-shadow: 2px 4px 2px 4px rgba(81, 73, 73, 0.244);
-        text-align: center;
-        
-        
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles... */
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            
+            background-color: #4158D0;
+            background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .booking-box {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 60px;
+            box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
 
-    }
     
-</style>
+            max-width: 400px;
+            width: 80%;
+            margin: 120px auto 20px; /* Adjust for navbar and spacing */
+            transition: transform 0.3s cubic-bezier(0.215, 0.610, 0.355, 1), box-shadow 0.3s ease-in-out;
+            
+        }
+        .booking-box:hover {
+            transform: translateY(-30px); /* Float up slightly on hover */
+            box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.15); /* Add a subtle shadow */
+        }
+        h1 {
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #444;
+        }
+        input[type="date"],
+        select,
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+        input[type="date"]:focus,
+        select:focus,
+        input[type="number"]:focus {
+            outline: none;
+            box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.2);
+        }
+        .btn-primary {
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 50%;
+            margin: 0 auto;
+            display: block;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
 {% endblock %}
 
 {% block content %}
-
-<div class="container fluid">
-    <div class="row">
-      <div class="col"><p align="left"><b>Booking- {{show_name}}|{{venue_name}}|{{venue_location}}</b></p></div>
-      <div class="col"><p align="right"><b>Show timings- {{show_timing}}</b></p></div>
-      </div>
-  </div>
-
-  <p align="center"><span style="font-family: 'Kanit', sans-serif; font-size:50px; text-align:center; text-shadow: 2px 2px 5px rgb(178, 215, 30)">Book your Show...</span></p>
-      
-</br>
-<br>
-<form method="POST">
-    <div class="form-group">
-      <label for="seats">No. of Seats: </label>
-      <input type="number" class="form-control" name="seats" id="seats" placeholder="Enter no. of seats">
+    <div class="navbar">
+        <!-- Navbar content -->
     </div>
-    </br>
+    <div class="booking-box">
+        <h1>Book Your Show</h1>
+        <form method="POST" onsubmit="return validateForm()">
+            <label for="date">Select Date:</label>
+            <input type="date" name="date" id="date" min="{{ min_date }}" max="{{ max_date }}" required>
+
+            <label for="time">Select Time Slot:</label>
+            <select name="time" id="time" required>
+                <option value="Morning">Morning(12:00-15:00)</option>
+                <option value="Evening">Evening(16:00-19:00)</option>
+                <option value="Night">Night(20:00-23:00)</option>
+            </select>
+
+            <label for="seats">No. of Seats:</label>
+            <input type="number" name="seats" id="seats" placeholder="Enter number of seats" required>
+
+            <button class="btn-primary" type="submit">Confirm Booking</button>
+        </form>
+    </div>
+    <script>
+        function validateForm() {
+            let date = document.getElementById('date').value;
+            let selectedDate = new Date(date);
+            let today = new Date();
+            let maxDate = new Date();
+            maxDate.setDate(today.getDate() + 5); // Maximum date allowed
+
+            // Check if date chosen is within 5 days from today
+            if (selectedDate > maxDate || selectedDate < today) {
+                alert("Please select a date within 5 days from today.");
+                return false;
+            }
+
+            let seats = document.getElementById('seats').value;
+
+            // Check if number of seats is greater than zero and less than 10
+            if (seats <= 0 || seats >= 10) {
+                alert("Please select a number of seats between 1 and 9.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+{% endblock %}
 
 
 
-    <div class="mb-3 row">
-        <label for="staticLocation" class="col-sm-2 col-form-label">Show Price: </label>
-        <div class="col-sm-10">
-          <input type="text" readonly class="form-control-plaintext" id="staticLocation" value="₹{{show_price}}/-">
-        </div>
-      </div>
-
-
-      <div class="mb-3 row">
-        <label for="staticLocation" class="col-sm-2 col-form-label">Available Seats: </label>
-        <div class="col-sm-10">
-          <input type="text" readonly class="form-control-plaintext" id="staticLocation" value="{{available_s}}">
-        </div>
-      </div>
-
-
-      <div align="center" class="btn">
-        <button class="btn btn-primary" type="submit">Confirm Booking</button>
-          
-      </div>
-    
-
-
-  </form>
 
 
 
-{% endblock %}  
+

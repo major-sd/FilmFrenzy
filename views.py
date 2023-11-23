@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, url_for, request, redirect, flash
 from flask_login import login_required,current_user
 from models import * #import database details
 from sqlalchemy import or_
+from datetime import *
 
 
 
@@ -169,7 +170,7 @@ def shows(venue_id):
     
 
 
-#Adding Shows under particular venuw
+#Adding Shows under particular venue
 @views.route("/<int:venue_id>/add_shows", methods=['GET','POST'])
 @login_required # only admin
 def add_shows(venue_id):
@@ -184,14 +185,14 @@ def add_shows(venue_id):
         name=request.form.get("name")
         tags=request.form.get("tags")
         price=request.form.get("price")
-        show_timing=request.form.get("show_timing")
+        #show_timing=request.form.get("show_timing")
         venue_id=v.id
         show_capacity=v.capacity
         simg=request.form.get("image")
         print(simg)
         
         ##vvip
-        s=Show(name=name,tags=tags,price=price,show_timing=show_timing,venue=v,show_capacity=show_capacity,simg=simg)
+        s=Show(name=name,tags=tags,price=price,venue=v,s_img=simg)
         #in this we pass obj of venue as "venue=v" in place of venue_id field, this allows to access venue table
         # fields directly from "show" objects for e.g. "s.venue.name" (name of corresp venue related to "s")
         
@@ -300,7 +301,9 @@ def book_show(user_id,show_id):
     
     u=User.query.get(user_id)
     s=Show.query.get(show_id)
-    v=Venue.query.get(s.venue.id)
+    v=Venue.query.get(s.venue.id)#important concept
+    today=date.today()
+    max_date= today + timedelta(days=2)
    
     
     
@@ -326,7 +329,7 @@ def book_show(user_id,show_id):
         
         return redirect(f"/user_dashboard/{u.id}")
     
-    return render_template("book_show.html",admin=current_user,user=current_user, id=current_user.id,show_name=s.name,venue_name=v.name,show_timing=s.show_timing,show_price=s.price,available_s=s.show_capacity,venue_location=v.location)
+    return render_template("book_show.html",admin=current_user,user=current_user, id=current_user.id,show_name=s.name,venue_name=v.name,show_timing=s.show_timing,show_price=s.price,available_s=s.show_capacity,venue_location=v.location,min_date=today,max_date=max_date )
         
 
 

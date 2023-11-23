@@ -4,11 +4,30 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide&effect=fire|neon|outline|shadow-multiple">
 
 <style>
-  body { background-image:url('/static/img16.gif'); 
-  background-repeat:repeat; 
-  background-size:auto;
-  align-content: center;
+  body  {
+    background-image: url('https://c4.wallpaperflare.com/wallpaper/862/449/162/jack-reacher-star-wars-interstellar-movie-john-wick-wallpaper-preview.jpg');
+  background-size:cover;
+        -webkit-animation: slidein 30s;
+        animation: slidein 30s;
 
+        -webkit-animation-fill-mode: backwards;
+        animation-fill-mode: forwards;
+
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+
+        -webkit-animation-direction: alternate;
+        animation-direction: alternate;              
+}
+
+@-webkit-keyframes slidein {
+from {background-position: top; background-size:auto; }
+to {background-position: -100px 0px;background-size:auto;}
+}
+
+@keyframes slidein {
+from {background-position: top;background-size:auto; }
+to {background-position: -100px 0px;background-size:auto;}
 
 }
 h1{
@@ -20,7 +39,19 @@ h1{
 .display-1{
 
   font-family: "Audiowide", sans-serif;
+  color: rgb(125, 39, 206);
+  
 
+}
+.wel{
+  border: 0px solid;
+  border-color: black;
+}
+.welcome{
+  border: 10px solid;
+  border-color: black;
+  margin: 20px 0 0 0;
+  padding: 0px 0px 0px 0px;
 }
 
 </style>
@@ -28,13 +59,15 @@ h1{
 
 
 {% block content %}
+<div class="welcome">
+  <h1 class="display-1 font-effect-shadow-multiple" align="center"><b>
+    <div class="wel">Welcome</div>
+     <div class="to">To</div> 
+     <div class ="ff">FilmFrenzy</div>
+    
+  </b></h1>
+</div>
 
-<h1 class="display-1 font-effect-shadow-multiple" align="center" style="color:white"><b>
-  <span style="color:peru">Welcome</span>
-  <span style="color:gold;">To</span>
-  <span style="color: red;">Film<span style="color: green">Frenzy</span></span>
-  </span>
-</b></h1>
 
 
 

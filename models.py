@@ -17,6 +17,7 @@ class User(db.Model,UserMixin):
     username = db.Column(db.String(100), nullable=False, unique=True)
     userpassword = db.Column(db.String(200), nullable=False)
     admin = db.Column(db.Boolean, nullable=False, default=0)
+    coins = db.Column(db.Integer, default=100)
     
     booking=db.relationship("Booking", backref="user",cascade="all, delete")
     rating=db.relationship("Usr", backref="user",cascade="all, delete")
@@ -24,6 +25,7 @@ class User(db.Model,UserMixin):
     
     def __repr__(self) :
        return f"<User {self.name}- Admin: {self.admin}>"
+   
     
 
 
@@ -75,6 +77,10 @@ class Booking(db.Model):
     total_price=db.Column(db.Integer)
     book_date=db.Column(db.DateTime, nullable=False)#derive fter slotting
     book_time=db.Column(db.String(30))#derive after slot availibility
+    # ...........
+    # status=db.Column(db.Integer,default=1)#Show booking status...do it later
+    # .............
+    
     # location=db.Column(db.String(100), db.ForeignKey('venue.location'), nullable=False)
 
 #user_show_rating & review (Usr) schema

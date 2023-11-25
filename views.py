@@ -204,6 +204,27 @@ def add_shows(venue_id):
         db.session.add(s)
         db.session.commit()
         flash(f'Show added successfully to {v.name}!', category="success")
+        
+        # logic for slotting date for 3 days only
+        today=datetime.now()
+        tmrw= today + timedelta(days=1)
+        max_date= today + timedelta(days=2)
+        
+        ps1m= Slot(venue=v,show=s,show_date=today,show_time="M",slot_capacity=v.capacity)# premiere slot 1 "M"-> Morning
+        ps1e= Slot(venue=v,show=s,show_date=today,show_time="E",slot_capacity=v.capacity)# "E"->Evening
+        ps1n= Slot(venue=v,show=s,show_date=today,show_time="N",slot_capacity=v.capacity)# "N"-> Night
+        
+        ps2m= Slot(venue=v,show=s,show_date=tmrw,show_time="M",slot_capacity=v.capacity)
+        ps2e= Slot(venue=v,show=s,show_date=tmrw,show_time="E",slot_capacity=v.capacity)
+        ps2n= Slot(venue=v,show=s,show_date=tmrw,show_time="N",slot_capacity=v.capacity)
+        
+        ps3m= Slot(venue=v,show=s,show_date=max_date,show_time="M",slot_capacity=v.capacity)
+        ps3e= Slot(venue=v,show=s,show_date=max_date,show_time="E",slot_capacity=v.capacity)
+        ps3n= Slot(venue=v,show=s,show_date=max_date,show_time="N",slot_capacity=v.capacity)
+        
+        db.session.add_all([ps1m,ps1e,ps1n,ps2m,ps2e,ps2n,ps3m,ps3e,ps3n])
+        db.session.commit()
+        
         return redirect(f"/{venue_id}/show")  
     
     return render_template("add_show.html",admin=current_user,user=current_user, id=current_user.id, v=v)
@@ -254,7 +275,7 @@ def edit_shows(venue_id,show_id):
             
             
         if simg:
-            s.simg=simg
+            s.s_img=simg
             
         
         ##vvip
@@ -301,12 +322,13 @@ def delete_show(show_id):
 @login_required # admin and user
 def book_show(user_id,show_id):
     
-    if(user_id != current_user.id):  #so that other users cannit intrude
+    if(user_id != current_user.id):  #so that other users cannot intrude
         return render_template("404.html")
     
     u=User.query.get(user_id)
     s=Show.query.get(show_id)
     v=Venue.query.get(s.venue.id)#important concept
+    
     today=date.today()
     max_date= today + timedelta(days=2)
    
@@ -334,7 +356,7 @@ def book_show(user_id,show_id):
         
         return redirect(f"/user_dashboard/{u.id}")
     
-    return render_template("book_show.html",admin=current_user,user=current_user, id=current_user.id,show_name=s.name,venue_name=v.name,show_timing=s.show_timing,show_price=s.price,available_s=s.show_capacity,venue_location=v.location,min_date=today,max_date=max_date )
+    return render_template("book_show.html",admin=current_user,user=current_user, id=current_user.id,show_name=s.name,venue_name=v.name,show_price=s.price,venue_location=v.location,min_date=today,max_date=max_date )
         
 
 

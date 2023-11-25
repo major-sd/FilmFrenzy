@@ -5,7 +5,12 @@ from datetime import * #for date related purposes
 
 
 
+
+
 db=SQLAlchemy() #initialise db under sqlalchemy
+
+
+
 
 
 
@@ -55,8 +60,9 @@ class Show(db.Model):
     #show_timing = db.Column(db.String(20), nullable=False)
     venue_id = db.Column(db.Integer, db.ForeignKey('venue.id'), nullable=False) # pass venue obj here to gain access to all fields (wherever there is foreign key links)
     #show_capacity = db.Column(db.Integer, nullable=False)
-    s_img=db.Column(db.String(2000))
-    s_trailer=db.Column(db.String(2000))
+    # show_release_date=db.Column
+    s_img=db.Column(db.String(2000))#show_image
+    s_trailer=db.Column(db.String(2000))#Show_trailer
     
     
     booking=db.relationship("Booking", backref="show",cascade="all, delete") # this will return a list of booking object for a given show

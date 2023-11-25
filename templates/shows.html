@@ -68,13 +68,13 @@
         {% if v%3==0 %} <!--condition for first card rest follows automatically-->
         <div class="col">
             <div class="card zoom" style="width: 20rem;">
-            <img src="{{shows[v].simg}}" class="card-img-top img-fluid rounded-start" alt="..."">
+            <img src="{{shows[v].s_img}}" class="card-img-top img-fluid rounded-start" alt="..."">
             <div class="card-body">
             <h5 class="card-title">{{shows[v].name}}</h5>
             <p class="card-text"><b>Tag:</b> {{shows[v].tags}}</p>
             <p class="card-text"><b>Price:</b> ₹{{shows[v].price}}</p>
-            <p class="card-text"><b>Show Timing:</b> {{shows[v].show_timing}}</p>
-            <p class="card-text"><b>Show capacity:</b>{{shows[v].show_capacity}}</p>
+            <!-- <p class="card-text"><b>Show Timing:</b> {{shows[v].show_timing}}</p>
+            <p class="card-text"><b>Show capacity:</b>{{shows[v].show_capacity}}</p> -->
             <a href="/delete_show/{{shows[v].id}}" class="btn btn-outline-danger">Delete<i class="fa-solid fa-trash"></i></a>
             <a href="/{{shows[v].venue.id}}/{{shows[v].id}}/edit_shows" class="btn btn-primary">Edit <i class="fa-solid fa-pen-to-square"></i></a>
 
@@ -87,13 +87,13 @@
         <!-- {% elif v%3==1 %} -->
             <div class="col">
             <div class="card zoom" style="width: 20rem;">
-            <img src="{{shows[v].simg}}" class="card-img-top img-fluid rounded-start" alt="..."">
+            <img src="{{shows[v].s_img}}" class="card-img-top img-fluid rounded-start" alt="..."">
             <div class="card-body">
             <h5 class="card-title">{{shows[v].name}}</h5>
             <p class="card-text"><b>Tag:</b> {{shows[v].tags}}</p>
             <p class="card-text"><b>Price:</b> ₹{{shows[v].price}}</p>
-            <p class="card-text"><b>Show Timing:</b> {{shows[v].show_timing}}</p>
-            <p class="card-text"><b>Show capacity:</b>{{shows[v].show_capacity}}</p>
+            <!-- <p class="card-text"><b>Show Timing:</b> {{shows[v].show_timing}}</p>
+            <p class="card-text"><b>Show capacity:</b>{{shows[v].show_capacity}}</p> -->
             <a href="/delete_show/{{shows[v].id}}" class="btn btn-outline-danger">Delete<i class="fa-solid fa-trash"></i></a>
             <a href="/{{shows[v].venue.id}}/{{shows[v].id}}/edit_shows" class="btn btn-primary">Edit <i class="fa-solid fa-pen-to-square"></i></a>
 
@@ -105,13 +105,14 @@
         <!-- {% elif v%3==2 %} -->
             <div class="col">
             <div class="card zoom" style="width: 20rem;">
-            <img src="{{shows[v].simg}}" class="card-img-top img-fluid rounded-start" alt="..." ">
+            <img src="{{shows[v].s_img}}" class="card-img-top img-fluid rounded-start" alt="..." ">
             <div class="card-body">
             <h5 class="card-title">{{shows[v].name}}</h5>
+            <p class="card-text"><b>Tag:</b> {{shows[v].tags}}</p>
             <p class="card-text"><b>Price:</b> ₹{{shows[v].price}}</p>
             
-            <p class="card-text"><b>Show Timing:</b> {{shows[v].show_timing}}</p>
-            <p class="card-text"><b>Show capacity:</b>{{shows[v].show_capacity}}</p>
+            <!-- <p class="card-text"><b>Show Timing:</b> {{shows[v].show_timing}}</p>
+            <p class="card-text"><b>Show capacity:</b>{{shows[v].show_capacity}}</p> -->
             <a href="/delete_show/{{shows[v].id}}" class="btn btn-outline-danger">Delete<i class="fa-solid fa-trash"></i></a>
             <a href="/{{shows[v].venue.id}}/{{shows[v].id}}/edit_shows" class="btn btn-primary">Edit <i class="fa-solid fa-pen-to-square"></i></a>
             

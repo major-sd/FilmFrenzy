@@ -1,55 +1,49 @@
 {% extends "base1.html" %}
 
-
 {% block content %}
+<style>
+  body {
+    background-color: #1a1a1a; /* Dark background color */
+    color: #fff; /* White text color for better readability */
+  }
 
-<h1>Add Venue</h1>
-<br>
-<br>
-<form method="POST">
-    <div class="form-group">
-      <label for="name">Venue Name <span style="color:red; font-size:20px;">*</span></label><br>
-      <input type="text" class="form-control"  required name=name id="name" placeholder="Venue Name">
+  .container {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    background-image: url('path/to/your-background-image.jpg'); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+  }
+</style>
+
+<div class="container">
+  <h1>Add Venue</h1>
+  <form method="POST">
+    <div class="mb-3">
+      <label for="name" class="form-label">Venue Name <span style="color:red;">*</span></label>
+      <input type="text" class="form-control" required name="name" id="name" placeholder="Enter Venue Name">
     </div>
 
-    <br>
-    <br>
+    <div class="mb-3">
+      <label for="location" class="form-label">Venue Location <span style="color:red;">*</span></label>
+      <input type="text" class="form-control" required name="location" id="location" placeholder="Enter Venue Location">
+    </div>
 
+    <div class="mb-3">
+      <label for="capacity" class="form-label">Venue Capacity <span style="color:red;">*</span></label>
+      <input type="number" min="0" class="form-control" name="capacity" id="capacity" required placeholder="Enter Venue Capacity">
+    </div>
 
-    <div class="form-group">
-        <label for="location"></label>Venue Location<span style="color:red; font-size:20px;">*</span></label>
-        <input type="text" class="form-control" required name=location id="location" placeholder="Venue Location">
-      </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Venue Image</label>
+      <input type="text" class="form-control" name="image" id="image" placeholder="Paste image URL here">
+    </div>
 
-      <br>
-      <br>
-
-
-
-      <div class="form-group">
-        <label for="capacity">Venue Capacity <span style="color:red; font-size:20px;">*</span></label><br>
-        <input type="number" min=0 class="form-control"  name=capacity id="capacity" required placeholder="Venue Capacity">
-      </div>
-
-      <br>
-      <br>
-
-
-      <div class="form-group">
-        <label for="image">Venue Image </label><br>
-        <input type="text" class="form-control"  name=image id="image" placeholder="Paste image URL here">
-      </div>
-
-      <br>
-      <div align="center">
-        <button class="btn btn-primary" type="submit">Submit</button>
-          
-      </div>
-
-
-
-
-    
+    <div class="text-center">
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
   </form>
+</div>
 
 {% endblock %}

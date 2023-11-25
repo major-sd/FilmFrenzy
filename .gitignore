@@ -6,6 +6,7 @@ venv/
 
 # Environment-related files
 .env
+tempCodeRunnerFile.pyc
 
 
 

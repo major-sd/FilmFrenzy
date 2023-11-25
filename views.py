@@ -185,14 +185,19 @@ def add_shows(venue_id):
         name=request.form.get("name")
         tags=request.form.get("tags")
         price=request.form.get("price")
-        #show_timing=request.form.get("show_timing")
+        
+        # show_timing=request.form.get("show_timing")
+        
         venue_id=v.id
-        show_capacity=v.capacity
+        
+        # show_capacity=v.capacity
+        
         simg=request.form.get("image")
+        strailer=request.form.get("trailer")
         print(simg)
         
         ##vvip
-        s=Show(name=name,tags=tags,price=price,venue=v,s_img=simg)
+        s=Show(name=name,tags=tags,price=price,venue=v,s_img=simg,s_trailer=strailer)
         #in this we pass obj of venue as "venue=v" in place of venue_id field, this allows to access venue table
         # fields directly from "show" objects for e.g. "s.venue.name" (name of corresp venue related to "s")
         

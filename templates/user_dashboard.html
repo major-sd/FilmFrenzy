@@ -73,7 +73,7 @@
         {% if v%3==0 %} <!--condition for first card rest follows automatically-->
             <div class="col-md">
             <div class="card card-custom zoom" style="width: 20rem;">
-            <img src="{{shows[v].simg}}" class="card-img-top img-fluid" alt="...">
+            <img src="{{shows[v].s_img}}" class="card-img-top img-fluid" alt="...">
             <div class="card-body">
             <h5 class="card-title">{{shows[v].name}}</h5>
             <p class="card-text"><b>Venue Name:</b> {{shows[v].venue.name}}</p>
@@ -103,14 +103,14 @@
         <!-- {% elif v%3==1 %} -->
             <div class="col-md">
             <div class="card card-custom zoom" style="width: 20rem;">
-            <img src="{{shows[v].simg}}" class="card-img-top img-fluid" alt="...">
+            <img src="{{shows[v].s_img}}" class="card-img-top img-fluid" alt="...">
             <div class="card-body">
             <h5 class="card-title">{{shows[v].name}}</h5>
             <p class="card-text"><b>Venue Name:</b> {{shows[v].venue.name}}</p>
             <p class="card-text"><b>Venue Location:</b> {{shows[v].venue.location}}</p>
             <p class="card-text"><b>Tags:</b> {{shows[v].tags}}</p>
             <!-- <p class="card-text"><b>Price:</b> ₹{{shows[v].price}}/-</p> -->
-            <p class="card-text"><b>Show Timing:</b> {{shows[v].show_timing}}</p>
+            <!-- <p class="card-text"><b>Show Timing:</b> {{shows[v].show_timing}}</p> -->
             {% if shows[v].avg_rating != None %}
                 <p class="card-text"><b>Show Rating:</b> {{shows[v].avg_rating}}/5 <i class="fa-solid fa-star fa-bounce" style="color: #ffd505;"></i></p>
             {% endif %}
@@ -133,7 +133,7 @@
         <!-- {% elif v%3==2 %} -->
             <div class="col-md">
             <div class="card card-custom zoom" style="width: 20rem;">
-            <img src="{{shows[v].simg}}" class="card-img-top img-fluid" alt="...">
+            <img src="{{shows[v].s_img}}" class="card-img-top img-fluid" alt="...">
             <div class="card-body">
             <h5 class="card-title">{{shows[v].name}}</h5>
             <p class="card-text"><b>Venue Name:</b> {{shows[v].venue.name}}</p>

@@ -1,12 +1,13 @@
 # Python-related files
 *.pyc
 __pycache__/
+.pyc
 venv/
 *.pyc
 
 # Environment-related files
 .env
-tempCodeRunnerFile.pyc
+tempCodeRunnerFile.py
 
 
 

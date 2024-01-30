@@ -81,7 +81,7 @@ class Booking(db.Model):
     show_id = db.Column(db.Integer,db.ForeignKey('show.id'), nullable=False)
     seats_book = db.Column(db.Integer)
     total_price=db.Column(db.Integer)
-    book_date=db.Column(db.DateTime, nullable=False)#derive fter slotting
+    book_date=db.Column(db.Date, nullable=False)#derive after slotting
     book_time=db.Column(db.String(30))#derive after slot availibility
     # ...........
     # status=db.Column(db.Integer,default=1)#Show booking status...do it later
@@ -107,7 +107,7 @@ class Slot(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     venue_id = db.Column(db.Integer,db.ForeignKey('venue.id'), nullable=False)#relation
     show_id = db.Column(db.Integer,db.ForeignKey('show.id'), nullable=False)#relation
-    show_date=db.Column(db.DateTime)
+    show_date=db.Column(db.Date)
     show_time = db.Column(db.String(30))
     slot_capacity=db.Column(db.Integer, nullable=False)
     

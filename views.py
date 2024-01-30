@@ -331,14 +331,33 @@ def book_show(user_id,show_id):
     
     today=date.today()
     max_date= today + timedelta(days=2)
+    
+    
    
     
     
     
     if request.method=="POST":
-        seats=int(request.form.get("seats"))
+        seats=int(request.form.get("seats")) #required seats for booking
         total_price= s.price * seats
         
+        book_date_str=request.form.get("date") # getting prefferred booking date
+        book_date = datetime.strptime(book_date_str, '%Y-%m-%d').date()
+        frmtd_date = book_date.strftime("%d/%m/%Y")# formatted date to dd/mm/yyyy
+        print(book_date)
+        book_time=request.form.get("time") # getting prefferred booking time(Morn,eve,Night)
+        
+        slot_time={
+                    "Morning":"M",
+                    "Evening":"E",
+                    "Night":"N"
+                   }
+        curr_slot_details=(Slot.query.filter(Slot.show_id==s.id, Slot.venue_id==v.id, Slot.show_date==book_date,Slot.show_time==slot_time[book_time]).first())
+        # returns current slot details as per user query
+        curr_slot_cap=curr_slot_details.slot_capacity
+        
+        print(curr_slot_details)
+        print(curr_slot_cap)
         
         
         
@@ -346,17 +365,32 @@ def book_show(user_id,show_id):
             flash(f'Please enter valid number of seats', category="error")
             return redirect(f"/{u.id}/{s.id}/book_show")
             
+        if curr_slot_cap >= seats:
             
-        b=Booking(user=u,venue=v,show=s, seats_book=seats, total_price=total_price)
-        db.session.add(b)
-        db.session.commit()
-        s.show_capacity=s.show_capacity-seats
-        db.session.commit()
-        flash(f'Congratulations!! You successfully booked {seats} ticket/s for {s.name} at {s.venue.name} at Rs. {total_price}.', category="success")
+            b=Booking(user=u,venue=v,show=s, seats_book=seats, total_price=total_price,book_date=book_date,book_time=book_time)
+            db.session.add(b)
+            db.session.commit()
+            curr_slot_details.slot_capacity= curr_slot_cap-seats
+            db.session.commit()
+            print(curr_slot_cap)
+            flash(f'Hurray!! Booked {seats} ticket(s) for {s.name} at {s.venue.name} on {frmtd_date} (Slot: {book_time}) at Rs. {total_price}.', category="success")
         
-        return redirect(f"/user_dashboard/{u.id}")
-    
-    return render_template("book_show.html",admin=current_user,user=current_user, id=current_user.id,show_name=s.name,venue_name=v.name,show_price=s.price,venue_location=v.location,min_date=today,max_date=max_date )
+            return redirect(f"/user_dashboard/{u.id}")
+                
+        
+        # s.show_capacity=s.show_capacity-seats
+        # db.session.commit()
+        
+        if curr_slot_cap>0:
+            flash(f'OOps!! Only {curr_slot_cap} seats are remaining', category="success")
+            return redirect(f"/{u.id}/{s.id}/book_show")
+            
+        else:
+            flash(f'Show is housefull for the provided slo', category="success")
+            return redirect(f"/{u.id}/{s.id}/book_show")
+            # return render_template("book_show.html",admin=current_user,user=current_user, id=current_user.id,show_name=s.name,venue_name=v.name,show_price=s.price,venue_location=v.location,min_date=today,max_date=max_date )
+                
+    return render_template("book_show.html",admin=current_user,user=current_user, id=current_user.id,show_name=s.name,venue_name=v.name,show_price=s.price,venue_location=v.location,min_date=today,max_date=max_date )   
         
 
 

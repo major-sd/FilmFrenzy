@@ -47,9 +47,30 @@ def user_dashboard(id):
     
     shows=Show.query.order_by(Show.id.desc()).all()
     # vname=Venue.query.get(shows.venue_id)
-        
-    return render_template("user_dashboard.html", user=current_user,admin=current_user,shows=shows,id=id)
+    print(shows)
+    today = datetime.now()
 
+    # Generate slots for each show
+    for show in shows:
+        generate_slots(show, show.venue, today)
+
+    # Optionally, you can redirect to the user dashboard or render a template
+    return render_template("user_dashboard.html", admin=current_user, user=current_user,shows=shows,id=id)
+        
+    # return render_template("user_dashboard.html", user=current_user,admin=current_user,shows=shows,id=id)
+    
+# Generate slots on user dashboard    
+def generate_slots(show, venue, start_date, num_days=3):
+    # Generate slots for the next 'num_days' days
+    for day_offset in range(num_days):
+        current_date = start_date + timedelta(days=day_offset)
+        slot_times = ["M", "E", "N"]  # You may customize this based on your needs
+
+        for time in slot_times:
+            slot = Slot(venue=venue, show=show, show_date=current_date, show_time=time, slot_capacity=venue.capacity)
+            db.session.add(slot)
+
+    db.session.commit()
 
 
 #adding new venues from admin page
@@ -166,6 +187,8 @@ def shows(venue_id):
     return render_template("shows.html",admin=current_user,user=current_user, id=current_user.id, shows=shows, v=v)
     
     
+
+
     
     
 

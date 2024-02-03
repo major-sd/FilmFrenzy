@@ -44,6 +44,10 @@ def admin_dashboard(id):
 def user_dashboard(id):
     
     id=current_user.id
+    print(id)
+    
+    if  (id!=current_user.id):
+        return render_template("404.html")
     
     shows=Show.query.order_by(Show.id.desc()).all()
     # vname=Venue.query.get(shows.venue_id)
@@ -384,9 +388,9 @@ def book_show(user_id,show_id):
         
         
         
-        if seats<0:
-            flash(f'Please enter valid number of seats', category="error")
-            return redirect(f"/{u.id}/{s.id}/book_show")
+        # if seats<0:
+        #     flash(f'Please enter valid number of seats', category="error")
+        #     return redirect(f"/{u.id}/{s.id}/book_show")
             
         if curr_slot_cap >= seats:
             
